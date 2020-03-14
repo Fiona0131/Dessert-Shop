@@ -1,0 +1,84 @@
+package dessert;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+
+
+public class Checkout {
+	
+	ArrayList<DessertItem> shopping = new ArrayList<DessertItem>();
+	
+	
+	public Checkout() {}
+	
+	public void enterItem(DessertItem item) {
+		shopping.add(item);
+	}
+	public void clear() {
+		shopping.clear();
+	}
+	public void getItem() {
+		shopping.size();
+	}
+	
+	public double totalCost() {
+		double cost =0;
+		for(DessertItem item: shopping) {
+		cost+=item.getCost();}
+		int decimalsToConsider = 2;
+		BigDecimal bigDecimal = new BigDecimal(cost).setScale(decimalsToConsider, RoundingMode.HALF_UP);
+		double finalCost = bigDecimal.doubleValue();
+		return finalCost;
+		
+	}
+	
+	public double totalTax() {
+		double tax = this.totalCost()*.0750;
+		int decimalsToConsider = 2;
+		BigDecimal bigDecimal = new BigDecimal(tax).setScale(decimalsToConsider, RoundingMode.HALF_UP);
+		double finalTax = bigDecimal.doubleValue();
+		return finalTax;
+	}
+	public double totalPayment() {
+		double payment = totalCost()+totalTax();
+		int decimalsToConsider = 2;
+		BigDecimal bigDecimal = new BigDecimal(payment).setScale(decimalsToConsider, RoundingMode.HALF_UP);
+		double finalPayment = bigDecimal.doubleValue();
+		return finalPayment;
+	}
+	public void getReceipt() {
+		System.out.println("Output Receipt: ");
+		System.out.println("Number of items: "+(shopping.size()-1));
+		System.out.println("Total cost: "+totalCost());
+		System.out.println("Total tax: "+totalTax());
+		System.out.println("Cost + Tax: "+totalPayment());
+		
+		
+		System.out.println("	Fiona & Shrek Dessert Shop");
+		System.out.println("	--------------------------");
+		for(DessertItem item: shopping) {
+			if(item instanceof Candy) {
+				System.out.println(((Candy)item).info());
+				System.out.printf("%-30s $%-30.30s%n",item.getName(), item.getCost());
+				
+			}
+			else if(item instanceof Cookie) {
+				System.out.println(((Cookie)item).info());
+				System.out.printf("%-30s $%-30.30s%n",item.getName(), item.getCost());
+			}
+			else
+				System.out.printf("%-30s $%-30.30s%n",item.getName(), item.getCost());
+			
+		}
+		System.out.println();
+		System.out.printf("%-30s $%-30.30s%n","Tax",totalTax());
+		System.out.printf("%-30s $%-30.30s%n","Cost",totalCost());
+		
+	}
+	
+	
+	public String toString() {
+		return null;
+	}
+}
