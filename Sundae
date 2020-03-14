@@ -1,0 +1,39 @@
+package dessert;
+
+public class Sundae extends IceCream{
+	String topping;
+	double priceTopping;
+	double price;
+	/**
+	 * default constructor
+	 */
+	public Sundae() {
+		super();
+	}
+	/**
+	 * create name of icecream item, price of icecream item, name of topping, price of topping 
+	 * in Sundae item
+	 * @param name - name of icecream item
+	 * @param pr - price of icecream item
+	 * @param t - name of topping
+	 * @param pt- price of topping of icecream item
+	 */
+	public Sundae(String name, double pr,String t, double pt) {
+		super(name,pr);
+		topping = t;
+		this.priceTopping = pt;
+	}
+	/**
+	 * return information of sundae
+	 */
+	public String info() {
+		return name+" Sundae with "+topping+ " topping.";
+	}
+	public String getName() {
+		return name+" Sundae with "+topping+ " topping.";
+	}
+	@Override
+	public double getCost() {
+		return price + priceTopping;
+	}
+}
