@@ -1,0 +1,40 @@
+package dessert;
+
+public class IceCream extends DessertItem{
+	double cost;
+	/**
+	 * default constructor
+	 */
+	public IceCream() {
+		super("Icecream");
+	}
+	/**
+	 * create name and cost of icecream item
+	 * @param name - name of icecream item
+	 * @param c - cost of icecream item
+	 */
+	public IceCream(String name, double c) {
+		super(name);
+		cost = c;
+	}
+	/**
+	 * return name of icecream item
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * 
+	 * @return name of icecream item
+	 */
+	public String info() {
+		return name+ " (Icecream)";
+	}
+	@Override
+	public double getCost() {
+		return cost;
+	}
+	
+	
+	
+}
