@@ -1,0 +1,18 @@
+package dessert;
+
+public class DessertShopTester {
+	public static void main(String[] args) {
+		Checkout checkout = new Checkout();
+		checkout.enterItem(new Candy("Hershey",2,19.94));
+		checkout.enterItem(new Candy("M&M's",4,14.45));
+		checkout.enterItem(new Cookie("Chocolate Mint Cookie",5,2.50));
+		checkout.enterItem(new Cookie("Coconut Macaroons",7,1.20));
+		checkout.enterItem(new IceCream("Vegan Banana Chocolate",3.50));
+		checkout.enterItem(new IceCream("Coconut Durian",4.00));
+		checkout.enterItem(new Sundae("Chocolate",3.50,"Grannola",1.15));
+		checkout.enterItem(new Sundae("Caramel",2.00,"Cherry",1.50));
+		checkout.getReceipt();
+		
+}
+	
+}
