@@ -1,0 +1,77 @@
+package dessert;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+public class Cookie extends DessertItem{
+	public class DessertItem {
+
+	}
+
+	int number;
+	double price;
+	/**
+	 * default constructor
+	 */
+	public Cookie() {
+		super("cookie");
+	}
+	/**
+	 * create name, number, and price of cookie item
+	 * @param name - name of cookie item
+	 * @param num - number of cookie item
+	 * @param pr - price of cookie item
+	 */
+	public Cookie(String name, int num, double pr) {
+		super(name);
+		number = num;
+		price = pr;
+	}
+	/**
+	 * set number of cookie item
+	 * @param num - number of cookie item
+	 */
+	public void setNumber(int num) {
+		number = num;
+	}
+	/**
+	 * set price per dozen of cookie item
+	 * @param pr - price per dozen of cookie item
+	 */
+	public void setPrice(double pr) {
+		price = pr;
+	}
+	/**
+	 * return the name of cookie item
+	 */
+	public String getName() {
+		return name + " (Cookie)";
+	}
+	/**
+	 * 
+	 * @return the information of cookie item
+	 * includes number and price per dozen
+	 */
+	public String info() {
+		return number+" @ "+price+" /dozen.";
+	}
+	
+	@Override
+	/**
+	 * return the cost of cookie item
+	 * round up the cost up to 2 decimal rounding
+	 */
+	public double getCost() {
+		double cost = number*(price/12);
+		
+		int decimalsToConsider = 2;
+		BigDecimal bigDecimal = new BigDecimal(cost).setScale(decimalsToConsider, RoundingMode.HALF_UP);
+		double finalCost = bigDecimal.doubleValue();
+		return finalCost;
+	}
+	
+	
+	
+	
+}
