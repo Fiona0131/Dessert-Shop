@@ -1,0 +1,89 @@
+package dessert;
+
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+
+
+public class Candy extends DessertItem implements Comparable<DessertItem> {
+	public Candy that;
+	double weight;
+	double price;
+	/**
+	 * default structure
+	 */
+	public Candy() {
+		super("candy");
+	}
+	/**
+	 * constructor of name, weight and price for Candy class
+	 * @param name - name of the candy item
+	 * @param w - weight (lbs) of the candy item
+	 * @param pr - price of the candy item
+	 */
+	public Candy(String name, double w, double pr) {
+		super(name);
+		weight = w;
+		price = pr;
+	}
+	/**
+	 * set the weight of the candy item
+	 * @param w - weight of the candy item
+	 */
+	public void setWeight(double w) {
+		weight = w;
+	}
+	/**
+	 * set the price of the candy item
+	 * @param pr - price of the candy item
+	 */
+	public void setPrice(double pr) {
+		price = pr;
+	}
+	/**
+	 * return the name of candy item
+	 */
+	public String getName() {
+		return name + " (Candy)";
+	}
+	/**
+	 * 
+	 * @return the information of weight and price per pound of the candy item
+	 */
+	public String info() {
+		return weight+" lbs. @ "+price+" /lb";
+	}
+	
+	@Override
+	public double getCost() {
+		double cost = weight*price;
+		int decimalsToConsider = 2;
+		BigDecimal bigDecimal = new BigDecimal(cost).setScale(decimalsToConsider, RoundingMode.HALF_UP);
+		double finalCost = bigDecimal.doubleValue();
+		return finalCost;
+		}
+	
+	public int compareTo(Candy that) {
+	  	int compare = (int) (this.getCost() - that.getCost());
+	  	return compare;
+  }
+
+/**
+ * Compare the difference price between two objects
+ * To find the object that has the higher cost
+ * @param that - the second DessertItem object
+ *
+ * @return the object that has higher cost
+   */
+  
+	public static Candy max(Candy o1, Candy o2) {
+		  if(o1.compareTo(o2)>0) {
+			  return o1;
+		  }
+		  else if(o1.compareTo(o2)<0) {
+			  return o2;
+		  }
+		  else {return null;}
+}
+}	
